@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
 import { HttpClient } from '@angular/common/http';
-import { CartService } from '../cart.service';
+import { AuthService } from '../../service/auth.service';
+import { CartService } from '../../service/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -27,9 +27,9 @@ export class HomeComponent implements OnInit {
         this.products = products;
       });
 
-    this.authService.isLoggedIn().subscribe((loggedIn) => {
-      this.isLoggedIn = loggedIn;
-    });
+    // this.authService.isLoggedIn().subscribe((loggedIn) => {
+    //   this.isLoggedIn = loggedIn;
+    // });
   }
 
   addToCart(product: any) {
