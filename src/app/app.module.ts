@@ -10,17 +10,22 @@ import { LoginComponent } from './page/authen/login/login.component';
 import { FooterComponent } from './component/layout/footer/footer.component';
 import { AuthGuardService } from './service/auth-guard.service';
 import { HeaderComponent } from './component/layout/header/header.component';
+import { CartListComponent } from './page/cart-manage/cart-list/cart-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuardService],
   },
   { 
     path: 'login', 
     component: LoginComponent 
+  },
+  { 
+    path: 'cart', 
+    component: CartListComponent,
+    canActivate: [AuthGuardService],
   },
 ];
 

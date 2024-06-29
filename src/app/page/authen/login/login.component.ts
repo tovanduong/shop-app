@@ -16,7 +16,6 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -25,21 +24,21 @@ export class LoginComponent {
   }
 
   loginUser() {
-    // if (this.loginForm.valid) {
-    //   const { username, password } = this.loginForm.value;
-    //   this.authService.login(username, password).subscribe(
-    //     (isLoggedIn) => {
-    //       if (isLoggedIn) {
-    //         this.router.navigate(['/home']);
-    //       } else {
-    //         this.loginError = true;
-    //       }
-    //     },
-    //     (error) => {
-    //       console.error('Login error:', error);
-    //       this.loginError = true;
-    //     }
-    //   );
-    // }
+    if (this.loginForm.valid) {
+      const { username, password } = this.loginForm.value;
+      this.authService.login(username, password).subscribe(
+        (isLoggedIn) => {
+          if (isLoggedIn) {
+            this.router.navigate(['/home']);
+          } else {
+            this.loginError = true;
+          }
+        },
+        (error) => {
+          console.error('Login error:', error);
+          this.loginError = true;
+        }
+      );
+    }
   }
 }
