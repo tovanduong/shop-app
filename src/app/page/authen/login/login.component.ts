@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../service/auth.service';
+import { maxLengthValidator } from '../../../validator/login.validator';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +16,11 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      username: ['', Validators.required, maxLengthValidator()],
+      password: ['', Validators.required, maxLengthValidator()],
     });
   }
 

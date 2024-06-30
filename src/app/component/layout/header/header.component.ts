@@ -6,27 +6,30 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  isLoggedIn=false
+  isLoggedIn = false;
   constructor(
     public cartService: CartService,
     private router: Router,
     public authService: AuthService
-  ) { 
+  ) {
     this.authService.isLoggedIn().subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
     });
   }
 
   getCount() {
-    const count = this.cartService.getCartItems().length
-    return count || 0
+    const count = this.cartService.getTotalItems();
+    return count || 0;
   }
   handleLogout() {
     this.authService.logout().subscribe((islogin) => {
-      if (!islogin) this.router.navigate(['/login']);
-    })
+      if (!islogin) {
+        this.cartService.clearCart();
+        this.router.navigate(['/login']);
+      }
+    });
   }
 }

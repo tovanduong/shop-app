@@ -3,8 +3,8 @@
   <nav>
     <a routerLink="/home">Home</a>
     <!-- <a routerLink="/about">About</a> -->
-    <div [attr.data-count]="getCount()" class="cart-item">
-      <a routerLink="/cart" >Cart</a>
+    <div [attr.data-count]="getCount()" [ngClass]="{ 'cart-item': isLoggedIn }">
+      <a routerLink="/cart">Cart</a>
     </div>
     <a *ngIf="!isLoggedIn" routerLink="/login">Login</a>
     <div *ngIf="isLoggedIn" (click)="handleLogout()">Log Out</div>

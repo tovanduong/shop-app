@@ -1,1 +1,8 @@
-<p>product-list works!</p>
+<div class="row mt-4">
+  <div class="col-12">
+    <h2 class="text-center">Products</h2>
+  </div>
+  <div class="col-md-4 mb-4" *ngFor="let product of products">
+    <app-product-item [product]="product" (addCart)="addToCartList($event)"></app-product-item>
+  </div>
+</div>

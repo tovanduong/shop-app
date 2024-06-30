@@ -11,6 +11,11 @@ import { FooterComponent } from './component/layout/footer/footer.component';
 import { AuthGuardService } from './service/auth-guard.service';
 import { HeaderComponent } from './component/layout/header/header.component';
 import { CartListComponent } from './page/cart-manage/cart-list/cart-list.component';
+import { ProductListComponent } from './page/product/product-list/product-list.component';
+import { ProductItemComponent } from './page/product/product-item/product-item.component';
+import { CurrencyPipe } from './pipe/currency.pipe';
+import { ProductDetailComponent } from './page/product/product-detail/product-detail.component';
+import { LoadingComponent } from './component/loading/loading.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,13 +23,18 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
-  { 
-    path: 'login', 
-    component: LoginComponent 
+  {
+    path: 'login',
+    component: LoginComponent,
   },
-  { 
-    path: 'cart', 
+  {
+    path: 'cart',
     component: CartListComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'product/:id',
+    component: ProductDetailComponent,
     canActivate: [AuthGuardService],
   },
 ];
@@ -35,7 +45,13 @@ const routes: Routes = [
     HomeComponent,
     LoginComponent,
     FooterComponent,
-    HeaderComponent
+    ProductListComponent,
+    HeaderComponent,
+    ProductItemComponent,
+    ProductDetailComponent,
+    CartListComponent,
+    CurrencyPipe,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

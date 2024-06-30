@@ -1,52 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../../service/auth.service';
-import { CartService } from '../../service/cart.service';
+import { Component } from '@angular/core';
 
-interface Product {
-  id:number;
-  name:string;
-  price:number;
-  imageUrl:string;
-  description:string
-}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-
-
-export class HomeComponent implements OnInit {
-  products: Product[] = [];
-  isLoggedIn: boolean = false;
-
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-    private cartService: CartService,
-    private http: HttpClient
-  ) {}
-
-  ngOnInit(): void {
-    this.http
-      .get<Product[]>('http://localhost:3000/products')
-      .subscribe((products) => {
-        this.products = products;
-      });
-
-    this.authService.isLoggedIn().subscribe((loggedIn) => {
-      this.isLoggedIn = loggedIn;
-    });
-  }
-
-  addToCart(product: Product) {
-    if (!this.isLoggedIn) {
-      this.router.navigate(['/login']);
-    } else {
-      this.cartService.addToCart(product);
-      // alert('Product added to cart!');
-    }
-  }
+export class HomeComponent {
+  // cartItems: Product[] = [];
+  // constructor(private cartService: CartService) {}
+  // ngOnInit(): void {
+  //   const user = JSON.parse(localStorage.getItem('user'));
+  //   if (user) {
+  //     this.cartService.getCartByUser(user.cartId).subscribe((cart) => {
+  //       this.cartItems = cart.cart;
+  //       this.cartService.updateCart(this.cartItems);
+  //       localStorage.setItem('cart', JSON.stringify(this.cartItems));
+  //     });
+  //   }
+  // }
 }

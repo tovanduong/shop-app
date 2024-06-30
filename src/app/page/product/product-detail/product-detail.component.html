@@ -1,1 +1,26 @@
-<p>product-detail works!</p>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs">
+      <a [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+    </li>
+  </ol>
+</nav>
+
+
+<div class="product-detail">
+  <img [src]="product?.imageUrl" alt="" />
+  <div>
+    <h1>{{ product?.name }}</h1>
+    <p><strong>Description</strong>: {{ product?.description }}</p>
+    <p><strong>Price</strong>: {{ product?.price | currency }}</p>
+    <div class="quantity-group">
+      <button class="btn btn-primary" (click)="addToCart(product)">
+        Add
+      </button>
+      <button class="btn btn-primary" (click)="removeItem(product)">
+        Remove
+      </button>
+    </div>
+  </div>
+
+</div>
